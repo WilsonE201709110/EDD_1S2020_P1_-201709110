@@ -45,6 +45,12 @@ struct nodo{
 	nodo* atras;
 } *primero, *ultimo;
 
+//Estructura para pila
+struct nodoPila{
+	char dato;
+	nodo* siguiente;
+} *primeroPila;
+
 //*************************LISTA DOBLE
 void insertarNodo();
 void desplegarListaPU();
@@ -55,7 +61,10 @@ void buscarNodos();
 //Lista circualr
 void insertarNodoCircular(string);
 void desplegarListaCircular();
-
+//pila
+void push();
+void pop();
+void verPila();
 //*******************************************************************************************************************************
 void vaciarLista();
 
@@ -805,7 +814,46 @@ void desplegarListaCircular(){
 	}
 }
 //*********************************************
+//PILA
+void push(){
+	nodoPila* nuevo = new nodoPila();
+	cout << " Ingrese el dato que contendra el nuevo Nodo: ";
+	cin >> nuevo->dato;
+	nuevo->siguiente = primeroPila;
+	primeroPila = nuevo;
+	cout << endl << " Nodo Ingresado " << endl << endl;
+}
+void pop(){
+	nodoPila* actual = new nodoPila();
+	actual = primeroPila;
 
+	if(primeroPila!=NULL){
+		
+		while(actual!=NULL){
+			
+				
+				if(actual == primeroPila){
+					primeroPila = primeroPila->siguiente;
+				}
+			
+			actual = actual->siguiente;
+		}
+		
+	}	
+}
+
+void verPila(){
+	nodoPila* actual = new nodoPila();
+	actual = primeroPila;
+	if(primeroPila!=NULL){
+		while(actual!=NULL){
+			cout << endl << " " << actual->dato; 
+			actual = actual->siguiente;
+		}
+	}else{
+		cout << endl << " La Pila se encuentra vacia" << endl << endl;
+	}
+}
 
 //*************************************************************************************************************************************************************
 
